@@ -14,7 +14,9 @@
 
 - Level - EASY
 -  Used HTML, CSS, JS
-- used local storage to store user credentials
-- In backend we used node, express, nodemon
+- Used local storage to store user credentials
+- In backend, we used node, express, nodemon
 
 [CODE]()
+
+<hr></hr>
