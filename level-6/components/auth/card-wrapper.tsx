@@ -29,7 +29,14 @@ export const CardWrapper =({
             <CardHeader>
                 <Header label={headerLabel}/>
             </CardHeader>
+            <CardContent>
             {children}
+            </CardContent>
+            {showSocial&&(
+                <CardFooter>
+                    <Social/>
+                </CardFooter>
+            )}
         </Card>
     )
 }
