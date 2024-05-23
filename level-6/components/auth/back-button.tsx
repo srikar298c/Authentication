@@ -1,7 +1,23 @@
-import React from 'react'
+import Link from "next/link";
+import { Button } from "../ui/button";
 
-export default function BackButton() {
-  return (
-    <div>BackButton</div>
+interface BackButtonProps{
+  href :string;
+  label: string;
+}
+
+export const BackButton =({
+  href,
+  label
+}:BackButtonProps)=>{
+  return(
+   <Button variant={"link"}
+   className="font-normal w-full"
+   size={"sm"}
+   asChild >
+    <Link href={href}>
+      {label}
+    </Link>
+   </Button>
   )
 }
