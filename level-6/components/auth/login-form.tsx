@@ -8,7 +8,8 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { z } from 'zod';
 import { Input } from '@/components/ui/input';
 import { Button } from '../ui/button';
-import { FormError, FormSuccess } from '../form-error';
+import { FormError } from '../form-error';
+import { FormSuccess } from '../form-success';
 
 export default function LoginForm() {
   const form = useForm<z.infer<typeof LoginSchema>>({
@@ -67,6 +68,7 @@ export default function LoginForm() {
           />         
         </div>
         <FormError message=''/>
+        <FormSuccess message=""/>
           <Button
           className='w-full'
           type='submit'
