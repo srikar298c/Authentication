@@ -1,17 +1,24 @@
 "use client";
-import React from 'react'
+import React, { useState, useTransition } from 'react'
 import { CardWrapper } from './card-wrapper'
 import { useForm } from 'react-hook-form'
 import { LoginSchema } from '@/schemas';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
-import { z } from 'zod';
+import * as z from 'zod';
 import { Input } from '@/components/ui/input';
 import { Button } from '../ui/button';
 import { FormError } from '../form-error';
 import { FormSuccess } from '../form-success';
+import { login } from '@/actons/login';
 
 export default function LoginForm() {
+
+  const [error, setError]= useState< string|undefined >("");
+  const [success, setSuccess]= useState<string|undefined>("");
+
+  const [isPending, startTransiton]= useTransition();
+
   const form = useForm<z.infer<typeof LoginSchema>>({
     resolver:zodResolver(LoginSchema),
     defaultValues:{
@@ -19,9 +26,19 @@ export default function LoginForm() {
       password:""
     },
   });
+
   const onSubmit=(values: z.infer<typeof LoginSchema>)=>{
-    console.log(values)
-  }
+    setError("")
+    setSuccess("")
+    startTransiton(()=>{
+      login(values).then((data)=>{
+        setError(data.error);
+        setSuccess(data.success)
+      })
+    })
+  
+  };
+
   return (
 <CardWrapper headerLabel="Welcome back" backButtonLabel="Don't have an account" backButtonHref="/auth/register"
     showSocial >
@@ -40,6 +57,7 @@ export default function LoginForm() {
               <FormControl>
                 <Input
                 {...field}
+                disabled={isPending}
                 placeholder='jhon.doe@example.com'
                 type='email'
                 />
@@ -58,6 +76,7 @@ export default function LoginForm() {
               <FormControl>
                 <Input
                 {...field}
+                disabled={isPending}
                 placeholder='Please Enter Password'
                 type='password'
                 />
@@ -67,8 +86,8 @@ export default function LoginForm() {
             )}
           />         
         </div>
-        <FormError message=''/>
-        <FormSuccess message=""/>
+        <FormError message='error'/>
+        <FormSuccess message="success"/>
           <Button
           className='w-full'
           type='submit'
