@@ -10,7 +10,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '../ui/button';
 import { FormError } from '../form-error';
 import { FormSuccess } from '../form-success';
-import { login } from '@/actons/login';
+import { register } from '@/actons/register';
 
 export default function RegisterForm() {
 
@@ -32,7 +32,7 @@ export default function RegisterForm() {
     setError("")
     setSuccess("")
     startTransiton(()=>{
-      login(values).then((data)=>{
+      register(values).then((data)=>{
         setError(data.error);
         setSuccess(data.success)
       })
