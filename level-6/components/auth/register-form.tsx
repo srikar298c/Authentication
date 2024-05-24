@@ -12,7 +12,7 @@ import { FormError } from '../form-error';
 import { FormSuccess } from '../form-success';
 import { login } from '@/actons/login';
 
-export default function LoginForm() {
+export default function RegisterForm() {
 
   const [error, setError]= useState< string|undefined >("");
   const [success, setSuccess]= useState<string|undefined>("");
@@ -41,7 +41,7 @@ export default function LoginForm() {
   };
 
   return (
-<CardWrapper headerLabel="Welcome back" backButtonLabel="Don't have an account" backButtonHref="/auth/register"
+<CardWrapper headerLabel="Welcome back" backButtonLabel="Already have an account" backButtonHref="/auth/login"
     showSocial >
       <Form{...form}>
       <form
@@ -80,6 +80,24 @@ export default function LoginForm() {
                 disabled={isPending}
                 placeholder='Please Enter Password'
                 type='password'
+                />
+              </FormControl>
+                <FormMessage/>
+            </FormItem>
+            )}
+          />         
+          <FormField
+          control={form.control}
+          name='name'
+          render={({field})=>(
+            <FormItem>
+              <FormLabel>Name</FormLabel>
+              <FormControl>
+                <Input
+                {...field}
+                disabled={isPending}
+                placeholder='Please Enter your Name'
+                type='text'
                 />
               </FormControl>
                 <FormMessage/>
