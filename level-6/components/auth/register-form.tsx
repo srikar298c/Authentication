@@ -111,7 +111,7 @@ export default function RegisterForm() {
           className='w-full'
           type='submit'
       
-          >Register</Button>
+          >Create an Account</Button>
       </form>
       </Form>
     </CardWrapper>
