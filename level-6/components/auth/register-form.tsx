@@ -105,8 +105,8 @@ export default function RegisterForm() {
             )}
           />         
         </div>
-        <FormError message='error'/>
-        <FormSuccess message="success"/>
+        <FormError message=''/>
+        <FormSuccess message=""/>
           <Button
           className='w-full'
           type='submit'

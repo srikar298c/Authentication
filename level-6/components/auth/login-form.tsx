@@ -42,7 +42,7 @@ export default function LoginForm() {
   return (
 <CardWrapper headerLabel="Welcome back" backButtonLabel="Don't have an account" backButtonHref="/auth/register"
     showSocial >
-      <Form{...form}>
+      <Form {...form}>
       <form
        onSubmit={form.handleSubmit(onSubmit)}
        className='space-y-6'
@@ -86,8 +86,8 @@ export default function LoginForm() {
             )}
           />         
         </div>
-        <FormError message='error'/>
-        <FormSuccess message="success"/>
+        <FormError message=''/>
+        <FormSuccess message=""/>
           <Button
           className='w-full'
           type='submit'
