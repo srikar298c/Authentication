@@ -10,13 +10,12 @@ import { Input } from '@/components/ui/input';
 import { Button } from '../ui/button';
 import { FormError } from '../form-error';
 import { FormSuccess } from '../form-success';
-import { register } from '@/actons/register';
+import { register } from '@/actions/register';
 
-export default function RegisterForm() {
+const RegisterForm =()=> {
 
-  const [error, setError]= useState< string|undefined >("");
+  const [error, setError]= useState<string|undefined>("");
   const [success, setSuccess]= useState<string|undefined>("");
-
   const [isPending, startTransiton]= useTransition();
 
   const form = useForm<z.infer<typeof RegisterSchema>>({
@@ -29,12 +28,14 @@ export default function RegisterForm() {
   });
 
   const onSubmit=(values: z.infer<typeof RegisterSchema>)=>{
-    setError("")
-    setSuccess("")
+    setError("");
+    setSuccess("");
+
     startTransiton(()=>{
       register(values).then((data)=>{
         setError(data.error);
         setSuccess(data.success)
+        console.log(data.success)
       })
     })
   
@@ -105,8 +106,8 @@ export default function RegisterForm() {
             )}
           />         
         </div>
-        <FormError message=''/>
-        <FormSuccess message=""/>
+        <FormError message={error}/>
+        <FormSuccess message={success}/>
           <Button
           className='w-full'
           type='submit'
@@ -117,3 +118,5 @@ export default function RegisterForm() {
     </CardWrapper>
   )
 }
+
+export default RegisterForm;

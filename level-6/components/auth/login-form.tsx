@@ -10,7 +10,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '../ui/button';
 import { FormError } from '../form-error';
 import { FormSuccess } from '../form-success';
-import { login } from '@/actons/login';
+import { login } from '@/actions/login';
 
 export default function LoginForm() {
 
@@ -86,8 +86,8 @@ export default function LoginForm() {
             )}
           />         
         </div>
-        <FormError message=''/>
-        <FormSuccess message=""/>
+        <FormError message={error}/>
+        <FormSuccess message={success}/>
           <Button
           className='w-full'
           type='submit'
