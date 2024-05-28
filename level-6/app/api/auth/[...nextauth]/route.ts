@@ -13,7 +13,7 @@ export const publicRoutes =[
  */
 export const authRoutes =[
     "/auth/login",
-    "auth/register",
+    "/auth/register",
 ];
 /**
  * The prefix for API authentication routes Routes that start with this prefis are used for API authentication purposes

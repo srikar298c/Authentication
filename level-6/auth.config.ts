@@ -21,6 +21,7 @@ export default { providers: [
                 )
                 if(passwordMatch) return user;
             }
+            return null;
                  }
     })
 ] } satisfies NextAuthConfig
