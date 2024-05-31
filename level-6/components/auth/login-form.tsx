@@ -37,7 +37,7 @@ const urlError = searchParams. get ("error") === "OAuthAccountNotLinked"
     startTransiton(()=>{
       login(values).then((data)=>{
         setError(data?.error);
-        setSuccess(data.success)
+        setSuccess(data?.success)
       })
     })
   
