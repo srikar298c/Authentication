@@ -33,8 +33,12 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
         default:
           return { error: "Something went wrong!" }
       }
+    } else {
+      // Handle other types of errors here
+      console.error(error);
+      return { error: "An unknown error occurred." };
     }
-    throw error;
+    
   }
 
  

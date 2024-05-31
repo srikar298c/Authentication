@@ -6,15 +6,15 @@ const SettingsPage = async()=>{
     
     return(
         <div>
-        I am Settings page
-        {/* <form action = {async()=>{
+       {JSON.stringify(session)}
+        <form action = {async()=>{
             "use server";
             await signOut();
         }}>
             <button type="submit">
                 Sign Out
             </button>
-        </form> */}
+        </form>
         </div>
     )
 }
