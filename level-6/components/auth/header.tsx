@@ -15,7 +15,7 @@ export const Header =({
 }:HeaderProps)=>{
     return(
         <div className="w-full flex flex-col gap-y-4 items-center justify-center">
-            <h1 className={cn("tex-3xl font-semibold")}>Auth</h1>
+            <h1 className={cn("tex-3xl font-semibold")}>🔐Auth</h1>
             <p className="text-muted-foreground text-sm">
                 {label}
             </p>

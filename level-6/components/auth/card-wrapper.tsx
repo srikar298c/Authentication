@@ -15,8 +15,8 @@ interface CardWrapperProps{
     children:React.ReactNode;
     headerLabel:string;
     backButtonLabel:string;
-    backButtonHref:String;
-    showSocial:boolean;
+    backButtonHref:string;
+    showSocial?:boolean;
 };
 
 export const CardWrapper =({
