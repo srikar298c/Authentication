@@ -10,7 +10,8 @@ import { Input } from '@/components/ui/input';
 import { Button } from '../ui/button';
 import { FormError } from '../form-error';
 import { FormSuccess } from '../form-success';
-import { login } from '@/actions/login';
+import { reset } from '@/actions/reset';
+
 
 
 export default function ResetForm() {
@@ -31,12 +32,12 @@ export default function ResetForm() {
     setError("")
     setSuccess("")
 
-//     startTransiton(()=>{
-//       login(values).then((data)=>{
-//         setError(data?.error);
-//         setSuccess(data?.success)
-//       })
-//     })
+    startTransiton(()=>{
+      reset(values).then((data)=>{
+        setError(data?.error);
+        setSuccess(data?.success)
+      })
+    })
   
   };
 
