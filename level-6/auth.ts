@@ -6,7 +6,7 @@ import { getUserById } from "./data/users"; // Assuming this is the correct impo
 
 const prisma = new PrismaClient();
 
-export const { auth, signIn, signOut } = NextAuth({
+export const { auth,handlers, signIn, signOut } = NextAuth({
   pages: {
     signIn: "/auth/login",
     error: "/auth/error"
