@@ -1,10 +1,11 @@
+import NewVerificationForm from '@/components/auth/new-verification-form'
 import React from 'react'
 
 type Props = {}
 
 function NewVerificationPage({}: Props) {
   return (
-    <div>NewVerificationPage</div>
+    <NewVerificationForm/>
   )
 }
 
