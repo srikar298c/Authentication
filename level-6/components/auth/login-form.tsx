@@ -12,6 +12,7 @@ import { FormError } from '../form-error';
 import { FormSuccess } from '../form-success';
 import { login } from '@/actions/login';
 import { useSearchParams } from 'next/navigation';
+import Link from 'next/link';
 
 export default function LoginForm() {
   const searchParams = useSearchParams() ;
@@ -85,6 +86,14 @@ const urlError = searchParams. get ("error") === "OAuthAccountNotLinked"
                 type='password'
                 />
               </FormControl>
+              <Button
+              variant={"link"}
+              size={"sm"}
+              asChild
+              className='px-0 font-normal'
+              >
+                <Link href="/auth/reset">Forgot password ?</Link>
+              </Button>
                 <FormMessage/>
             </FormItem>
             )}
