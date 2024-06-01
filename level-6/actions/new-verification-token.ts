@@ -13,8 +13,8 @@ return { error:
 "Token has expired!" };
 }
 const existingUser = await getUserByEmail(existingToken.email);
-if (!existingUser)
-return { error:"Email does not exist!" };
+if (!existingUser) return { error:"Email does not exist!" };
+
 await db.user.update({
 where: { id: existingUser.id },
 data: {
