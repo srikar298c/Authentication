@@ -2,7 +2,7 @@
 import React, { useState, useTransition } from 'react'
 import { CardWrapper } from './card-wrapper'
 import { useForm } from 'react-hook-form'
-import { LoginSchema } from '@/schemas';
+import {  ResetSchema } from '@/schemas';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import * as z from 'zod';
@@ -20,25 +20,24 @@ export default function ResetForm() {
 
   const [isPending, startTransiton]= useTransition();
 
-  const form = useForm<z.infer<typeof LoginSchema>>({
-    resolver:zodResolver(LoginSchema),
+  const form = useForm<z.infer<typeof ResetSchema>>({
+    resolver:zodResolver(ResetSchema),
     defaultValues:{
       email:"",
-      password:""
     },
   });
 
-  const onSubmit=(values: z.infer<typeof LoginSchema>)=>{
-    setError("")
-    setSuccess("")
-    startTransiton(()=>{
-      login(values).then((data)=>{
-        setError(data?.error);
-        setSuccess(data?.success)
-      })
-    })
+//   const onSubmit=(values: z.infer<typeof ResetSchema>)=>{
+//     setError("")
+//     setSuccess("")
+//     startTransiton(()=>{
+//       login(values).then((data)=>{
+//         setError(data?.error);
+//         setSuccess(data?.success)
+//       })
+//     })
   
-  };
+//   };
 
   return (
 <CardWrapper headerLabel="Forgot your passwrord.." backButtonLabel="Back to login" backButtonHref="/auth/login"

@@ -19,3 +19,9 @@ export const RegisterSchema =z.object({
         message:"Name is requried"
     })
 })
+export const ResetSchema =z.object({
+    email:z.string().email({
+        message: "Email is required"
+    }),
+   
+})
