@@ -27,9 +27,10 @@ export default function ResetForm() {
     },
   });
 
-//   const onSubmit=(values: z.infer<typeof ResetSchema>)=>{
-//     setError("")
-//     setSuccess("")
+  const onSubmit=(values: z.infer<typeof ResetSchema>)=>{
+    setError("")
+    setSuccess("")
+
 //     startTransiton(()=>{
 //       login(values).then((data)=>{
 //         setError(data?.error);
@@ -37,7 +38,7 @@ export default function ResetForm() {
 //       })
 //     })
   
-//   };
+  };
 
   return (
 <CardWrapper headerLabel="Forgot your passwrord.." backButtonLabel="Back to login" backButtonHref="/auth/login"
