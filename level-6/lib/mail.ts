@@ -1,6 +1,20 @@
 import email from "next-auth/providers/email";
 import {Resend} from "resend"
 const resend = new Resend(process.env.RESEND_API_KEY);
+
+
+export const sendTwoFactorTokenEmail
+= async (
+email:string,
+token:string,)=>{
+await resend.emails.send ({
+from:"onboarding@resend. dev",
+to : email,
+subject:"2FA Code",
+html:`<p>Your 2FA code: ${token}</p>`
+});
+}
+
 export const sendPasswordResetEmail =async(
   email: string,
   token: string,
@@ -10,7 +24,7 @@ await resend.emails.send({
 from: "onboarding@resend.dev",
 to: email,
 subject: "Reset your password",
-html: `<pClick <a href="$(resetLink)">here</a> to reset password.</p>`
+html: `<pClick <a href="${resetLink}">here</a> to reset password.</p>`
 })
 };
 
