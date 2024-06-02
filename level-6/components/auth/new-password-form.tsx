@@ -2,7 +2,7 @@
 import React, { useState, useTransition } from 'react'
 import { CardWrapper } from './card-wrapper'
 import { useForm } from 'react-hook-form'
-import {  ResetSchema } from '@/schemas';
+import {  NewPasswordSchema} from '@/schemas';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import * as z from 'zod';
@@ -21,14 +21,14 @@ export default function NewPasswordForm() {
 
   const [isPending, startTransiton]= useTransition();
 
-  const form = useForm<z.infer<typeof ResetSchema>>({
-    resolver:zodResolver(ResetSchema),
+  const form = useForm<z.infer<typeof NewPasswordSchema>>({
+    resolver:zodResolver(NewPasswordSchema),
     defaultValues:{
-      email:"",
+      password:"",
     },
   });
 
-  const onSubmit=(values: z.infer<typeof ResetSchema>)=>{
+  const onSubmit=(values: z.infer<typeof NewPasswordSchema>)=>{
     setError("")
     setSuccess("")
 
@@ -42,7 +42,7 @@ export default function NewPasswordForm() {
   };
 
   return (
-<CardWrapper headerLabel="Forgot your passwrord.." backButtonLabel="Back to login" backButtonHref="/auth/login"
+<CardWrapper headerLabel="Create New Password" backButtonLabel="Remembered Your Credentials" backButtonHref="/auth/login"
      >
       <Form {...form}>
       <form
@@ -52,16 +52,16 @@ export default function NewPasswordForm() {
         <div className="space-y-4">
           <FormField
           control={form.control}
-          name='email'
+          name='password'
           render={({field})=>(
             <FormItem>
-              <FormLabel>Email</FormLabel>
+              <FormLabel>Password</FormLabel>
               <FormControl>
                 <Input
                 {...field}
                 disabled={isPending}
-                placeholder='jhon.doe@example.com'
-                type='email'
+                placeholder='******'
+                type='password'
                 />
               </FormControl>
                 <FormMessage/>
