@@ -12,12 +12,14 @@ import { sendTwoFactorTokenEmail, sendVerificationEmail } from "@/lib/mail";
 
 export const login = async (values: z.infer<typeof LoginSchema>) => {
   const validatedFields = LoginSchema.safeParse(values);
+
   if (!validatedFields.success) {
     return { error: "Invalid fields!" }
   }
 
-  const { email, password } = validatedFields.data;
+  const { email, password, code } = validatedFields.data;
   const existingUser =await getUserByEmail(email);
+
   if (!existingUser || !existingUser.email || !existingUser.password){
     return { error: "Email does not exist!" }
   }
@@ -34,12 +36,16 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
     }
 
     if(existingUser.isTwoFactorEnabled && existingUser.email){
+      if(code){
+
+      } else{
       const twoFactorToken = await generateTwoFactorToken(existingUser.email)
       await sendTwoFactorTokenEmail(
         twoFactorToken.email,
         twoFactorToken.token
       )
       return{twoFactor: true}
+    }
     }
 
   try {
