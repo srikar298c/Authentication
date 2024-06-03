@@ -15,7 +15,7 @@ export const generateTwoFactorToken = async (email: string) =>{
     }
 })
     }
-    const twoFactorToken = await db. twoFactorToken.create({
+    const twoFactorToken = await db.twoFactorToken.create({
         data: {
         email,
         token,

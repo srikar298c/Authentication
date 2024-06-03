@@ -4,6 +4,7 @@ import { PrismaClient, UserRole } from "@prisma/client";
 import authConfig from "@/auth.config";
 import { getUserById } from "./data/users"; // Assuming this is the correct import path
 import { getTwoFactorConfirmationByUserId } from "./data/two-factor-confirmation";
+import { db } from "./lib/db";
 
 const prisma = new PrismaClient();
 
@@ -28,10 +29,15 @@ export const { auth,handlers, signIn, signOut } = NextAuth({
       //preventing sign in without verification
       if (!existingUser?.emailVerified) return false;
 
-      if(existingUser. isTwoFactorEnabled) {
+      if(existingUser.isTwoFactorEnabled) {
 const twoFactorConfirmation = await getTwoFactorConfirmationByUserId(existingUser.id);
 
-        if(twoFactorConfirmation) return false;
+        if(!twoFactorConfirmation) return false;
+
+        //Delete two factor confirmation for next sign in
+        await db.twoFactorConfiramtion.delete({
+          where: {id: twoFactorConfirmation.id}
+        })
 }
       return true;
     },

@@ -5,7 +5,7 @@ import { LoginSchema } from "@/schemas"
 import { AuthError } from "next-auth";
 import * as z from "zod";
 import { getUserByEmail } from "@/data/users";
-import { generateVerificationToken } from "@/lib/tokens";
+import { generateTwoFactorToken, generateVerificationToken } from "@/lib/tokens";
 import { sendVerificationEmail } from "@/lib/mail";
 
 
@@ -32,6 +32,14 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
     return {
     success: "Confirmation email sent!" }
     }
+
+    if(existingUser.isTwoFactorEnabled && existingUser.email){
+      const twoFactorToken = await generateTwoFactorToken(existingUser.email,
+      twoFactorToken.token,
+      );
+      return{twoFactor: true}
+    }
+
   try {
     // Sign in the user
     await signIn("credentials", {
