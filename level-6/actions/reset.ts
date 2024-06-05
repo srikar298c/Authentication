@@ -9,7 +9,7 @@ import * as z from "zod";
 export const reset = async (values: z.infer<typeof ResetSchema>)=>{
     const validatedFields = ResetSchema.safeParse(values);
 
-    if (validatedFields. success) {
+    if (!validatedFields.success) {
     return { error: "Invalid email!" };
     }
 
@@ -23,7 +23,7 @@ export const reset = async (values: z.infer<typeof ResetSchema>)=>{
     const passwordResetToken = await generatePasswordResetToken(email);
 await sendPasswordResetEmail(
 passwordResetToken.email,
-passwordResetToken. token,
+passwordResetToken.token,
 );
 return{success:"Reset email sent!"}
 }

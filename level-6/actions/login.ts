@@ -7,6 +7,8 @@ import * as z from "zod";
 import { getUserByEmail } from "@/data/users";
 import { generateTwoFactorToken, generateVerificationToken } from "@/lib/tokens";
 import { sendTwoFactorTokenEmail, sendVerificationEmail } from "@/lib/mail";
+import { getTwoFactorTokenByEmail } from "@/data/two-factor-token";
+import { db } from "@/lib/db";
 
 
 
@@ -37,7 +39,22 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
 
     if(existingUser.isTwoFactorEnabled && existingUser.email){
       if(code){
+        const twoFactorToken = await getTwoFactorTokenByEmail(
+          existingUser.email
+        )
+        if(!twoFactorToken) return {error: "Invalid Code!"}
 
+        if (twoFactorToken.token !== code) {
+          return { error: "Invalid code!" };
+        }
+          const hasExpired = new Date(twoFactorToken.expires) < new Date();
+          if(hasExpired){
+          return { error:"Code expired!" };
+          }
+          await db.twoFactorToken.delete({
+          where: { id: twoFactorToken.id }
+          })
+          
       } else{
       const twoFactorToken = await generateTwoFactorToken(existingUser.email)
       await sendTwoFactorTokenEmail(
@@ -58,7 +75,8 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
 
     // If the signIn is successful, return the success message
     return { success: "Logged in successfully!" }
-  } catch (error) {
+  } 
+  catch (error) {
     if (error instanceof AuthError) {
       switch (error.type) {
         case "CredentialsSignin":
@@ -66,11 +84,7 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
         default:
           return { error: "Something went wrong!" }
       }
-    } else {
-      // Handle other types of errors here
-      console.error(error);
-      return { error: "An unknown error occurred." };
-    }
+    } 
     
   }
 

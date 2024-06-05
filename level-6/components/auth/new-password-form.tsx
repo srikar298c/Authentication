@@ -77,7 +77,7 @@ export default function NewPasswordForm() {
           className='w-full'
           type='submit'
       
-          >Send reset email</Button>
+          >Reset Password </Button>
       </form>
       </Form>
     </CardWrapper>

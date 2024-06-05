@@ -1,10 +1,12 @@
+import NewPasswordForm from '@/components/auth/new-password-form'
 import React from 'react'
 
 type Props = {}
 
 function NewPasswordPage({}: Props) {
   return (
-    <div>NewPasswordPage</div>
+    
+   <NewPasswordForm/>
   )
 }
 
