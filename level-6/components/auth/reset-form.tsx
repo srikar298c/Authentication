@@ -11,11 +11,13 @@ import { Button } from '../ui/button';
 import { FormError } from '../form-error';
 import { FormSuccess } from '../form-success';
 import { reset } from '@/actions/reset';
+// import { useSearchParams } from 'next/navigation';
 
 
 
 export default function ResetForm() {
-
+  // const searchParams = useSearchParams();
+  // const token = searchParams.get("token");
   const [error, setError]= useState< string|undefined >("");
   const [success, setSuccess]= useState<string|undefined>("");
 

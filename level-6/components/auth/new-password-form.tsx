@@ -10,11 +10,15 @@ import { Input } from '@/components/ui/input';
 import { Button } from '../ui/button';
 import { FormError } from '../form-error';
 import { FormSuccess } from '../form-success';
-import { reset } from '@/actions/reset';
+
+import { newPassword } from '@/actions/new-password';
+import { useSearchParams } from 'next/navigation';
 
 
 
 export default function NewPasswordForm() {
+ const searchParams = useSearchParams();
+ const token = searchParams.get("token");
 
   const [error, setError]= useState< string|undefined >("");
   const [success, setSuccess]= useState<string|undefined>("");
@@ -33,7 +37,7 @@ export default function NewPasswordForm() {
     setSuccess("")
 
     startTransiton(()=>{
-      reset(values).then((data)=>{
+      newPassword(values, token).then((data)=>{
         setError(data?.error);
         setSuccess(data?.success)
       })
