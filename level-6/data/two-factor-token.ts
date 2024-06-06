@@ -10,10 +10,10 @@ catch {
 return null;
 }
 }
-export const getTwoFactorTokenByEmail = async (token: string)=>{
+export const getTwoFactorTokenByEmail = async (email: string)=>{
 try {
 const twoFactorToken = await db.twoFactorToken.findFirst({
-where: { token }
+where: { email}
 });
 return twoFactorToken;
 }
