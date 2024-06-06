@@ -5,13 +5,13 @@ import { useCurrentUser } from "@/hooks/use-current-user";
 
 
 const SettingsPage = ()=>{
-    const session = useCurrentUser()
+    const user = useCurrentUser()
     const onClick =()=>{
         logout();
     }
     return(
         <div>
-       {JSON.stringify(session)}
+       {JSON.stringify(user)}
         <form>
             <button type="submit"
             onClick={onClick}>
