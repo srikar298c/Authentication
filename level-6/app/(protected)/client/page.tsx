@@ -7,7 +7,7 @@ const ClientPage =  () => {
     const user = useCurrentUser();
     return (
         <UserInfo
-            label="💻Server component"
+            label="📱Client component"
             user={user}
         />
     );
