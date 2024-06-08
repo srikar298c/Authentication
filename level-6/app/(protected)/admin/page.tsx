@@ -1,9 +1,10 @@
 "use client"
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { currentRole } from "@/lib/auth";
+import { useCurrentRole } from "@/hooks/use-current-role";
+
 
 const AdminPage =()=>{
-    const role =  currentRole();
+    const role =  useCurrentRole();
     return(
         <Card className="w-[600px]">
             <CardHeader >
@@ -12,7 +13,7 @@ const AdminPage =()=>{
             </p>
             </CardHeader>
             <CardContent>
-                
+
             </CardContent>
             
         </Card>
