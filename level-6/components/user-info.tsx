@@ -60,7 +60,7 @@ export const UserInfo=({
                 Two Factor enabled
             </p>
             <p className="truncate text-xs max-w-[180px] font-monop-1 bg-slate-100 rounded-md">
-                OFF
+                
             </p>
             </div>
             </CardContent>
