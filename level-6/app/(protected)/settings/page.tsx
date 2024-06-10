@@ -23,7 +23,9 @@ const SettingsPage = ()=>{
    const form = useForm<z.infer<typeof SettingsSchema>>({
     resolver: zodResolver(SettingsSchema),
     defaultValues:{
-        name: user?.name || undefined,    }
+        name: user?.name || undefined, 
+        email : user?.email||undefined,
+      }
    });
    const [error, setError] = useState<string| undefined>()
    const [success, setSuccess] = useState<string| undefined>()
@@ -63,6 +65,21 @@ const SettingsPage = ()=>{
                     <Input
                     {...field}
                     placeholder="John Doe"
+                    disabled={isPending}
+                    />
+                </FormControl>
+            </FormItem>
+        )}
+        /> <FormField control={form.control}
+        name ="email"
+        render= {({field})=>(
+            <FormItem>
+                <FormLabel>Email</FormLabel>
+                <FormControl>
+                    <Input
+                    {...field}
+                    placeholder="johndoe@example.com"
+                    type="email"
                     disabled={isPending}
                     />
                 </FormControl>

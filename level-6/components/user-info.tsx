@@ -12,7 +12,7 @@ export const UserInfo=({
     label,
 }: UserInfoProps)=>{
     return(
-        <Card>
+        <Card className="w-[600px]">
            <CardHeader>
             <p className="text-2xl font-semibold text-center">
                 {label}
