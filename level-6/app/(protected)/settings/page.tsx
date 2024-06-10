@@ -25,6 +25,7 @@ const SettingsPage = ()=>{
     defaultValues:{
         name: user?.name || undefined, 
         email : user?.email||undefined,
+        password: undefined,
       }
    });
    const [error, setError] = useState<string| undefined>()
@@ -70,7 +71,8 @@ const SettingsPage = ()=>{
                 </FormControl>
             </FormItem>
         )}
-        /> <FormField control={form.control}
+        /> 
+        <FormField control={form.control}
         name ="email"
         render= {({field})=>(
             <FormItem>
@@ -80,6 +82,22 @@ const SettingsPage = ()=>{
                     {...field}
                     placeholder="johndoe@example.com"
                     type="email"
+                    disabled={isPending}
+                    />
+                </FormControl>
+            </FormItem>
+        )}
+        />
+        <FormField control={form.control}
+        name ="password"
+        render= {({field})=>(
+            <FormItem>
+                <FormLabel>Password</FormLabel>
+                <FormControl>
+                    <Input
+                    {...field}
+                    placeholder="******"
+                    type="passoword"
                     disabled={isPending}
                     />
                 </FormControl>
