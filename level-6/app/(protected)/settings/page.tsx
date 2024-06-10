@@ -26,6 +26,7 @@ const SettingsPage = ()=>{
         name: user?.name || undefined, 
         email : user?.email||undefined,
         password: undefined,
+        newPassword: undefined,
       }
    });
    const [error, setError] = useState<string| undefined>()
@@ -93,6 +94,22 @@ const SettingsPage = ()=>{
         render= {({field})=>(
             <FormItem>
                 <FormLabel>Password</FormLabel>
+                <FormControl>
+                    <Input
+                    {...field}
+                    placeholder="******"
+                    type="passoword"
+                    disabled={isPending}
+                    />
+                </FormControl>
+            </FormItem>
+        )}
+        />
+        <FormField control={form.control}
+        name ="newPassword"
+        render= {({field})=>(
+            <FormItem>
+                <FormLabel>New password</FormLabel>
                 <FormControl>
                     <Input
                     {...field}
