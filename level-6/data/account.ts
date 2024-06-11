@@ -1,13 +1,12 @@
-import { db } from "@/lib/db"
+import { db } from "@/lib/db";
 
-export const getAccountByUserId = async()=>{
-    try{
+export const getAccountByUserId = async (userId: string): Promise<any | null> => {
+    try {
         const account = await db.account.findFirst({
-            where:{userId}
-        })
+            where: { userId }
+        });
         return account;
-
-    } catch{
+    } catch {
         return null;
     }
 }

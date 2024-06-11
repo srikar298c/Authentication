@@ -3,15 +3,12 @@ import { Poppins } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
+import { LoginButton } from "@/components/auth/login-button";
 
 const font = Poppins({ subsets: ["latin"], weight: ["600"] });
 
 export default function Home() {
-  const router = useRouter();
-
-  const onSubmission = () => {
-    router.push("/auth/login");
-  };
+  
 
   return (
     <main
@@ -31,7 +28,10 @@ export default function Home() {
         </h1>
         <p className="text-white">Level-6 Authentication</p>
         <div>
-          <Button onClick={onSubmission}>Button</Button>
+          <LoginButton mode= "modal" asChild>
+
+          <Button >SignIn</Button>
+          </LoginButton>
         </div>
       </div>
     </main>

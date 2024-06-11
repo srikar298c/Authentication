@@ -9,7 +9,10 @@ import { getAccountByUserId } from "./data/account";
 
 const prisma = new PrismaClient();
 
-export const { auth,handlers, signIn, signOut } = NextAuth({
+export const { auth,handlers, signIn, signOut,
+  
+
+} = NextAuth({
   pages: {
     signIn: "/auth/login",
     error: "/auth/error"
@@ -26,6 +29,7 @@ export const { auth,handlers, signIn, signOut } = NextAuth({
     async signIn({ user, account }) {
       // Allowing Oauth provider without email verification
       if (account?.provider !== "credentials") return true;
+      if (!user || !user.id) return false;
       const existingUser = await getUserById(user.id);
       //preventing sign in without verification
       if (!existingUser?.emailVerified) return false;
@@ -65,7 +69,7 @@ export const { auth,handlers, signIn, signOut } = NextAuth({
 
     const existingUser = await getUserById(token.sub);
 
-    if (!existingUser) return token;
+    if (!existingUser ) return token;
 
       const existingAccount = await getAccountByUserId(existingUser.id);
 
