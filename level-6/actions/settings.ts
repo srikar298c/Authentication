@@ -36,13 +36,14 @@ export const settings = async (values: z.infer<typeof SettingsSchema>) => {
     if(existingUser && existingUser.id !== user.id){
         return {error: "Email already in use"}
     }
-    const verificationToken = await generateVerificationToken(values.email);
-    await sendVerificationEmail(
-        verificationToken.email,
-        verificationToken.token,
-    )
-    return {success: "verification email sent"}
   }
+  //   const verificationToken = await generateVerificationToken(values.email);
+  //   await sendVerificationEmail(
+  //       verificationToken.email,
+  //       verificationToken.token,
+  //   )
+  //   return {success: "verification email sent"}
+  // }
   if(values.password && values.newPassword && dbUser.password){
     const passwordMatch = await bcrypt.compare(
         values.password,
@@ -59,7 +60,7 @@ export const settings = async (values: z.infer<typeof SettingsSchema>) => {
     values.newPassword= undefined;
   }
 
-  const updatedUser = 
+   
   await db.user.update({
     where: { id: dbUser.id },
     data: {

@@ -50,7 +50,7 @@ const SettingsPage = ()=>{
                     update();
                     setSuccess(data.success)
                 }
-            }).catch(()=>setError("Something went wrong!"))
+            })
         })
     }
     return(
